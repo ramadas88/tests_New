@@ -1,0 +1,19 @@
+
+Created ansible configuration to install epel pachage and nginx package
+created necessary supporting files
+  nginx configuration fies
+  virtulal host configutstion files
+created playbook to push and  prepare necessary folders for  configurating nginx
+copied host file  using palybook
+
+created host file for ansible in /etc/ansible/hosts and added below entry
+
+
+[servers]
+host1 ansible_ssh_host=192.168.0.101  ansible_connection=ssh ansible_ssh_user=root ansible_ssh_pass=123
+
+
+added ssh key from remote host to ansible server to aviod host-key checking
+
+
+
