@@ -1,0 +1,42 @@
+---
+- hosts: servers
+  tasks:
+    - name: Installs epel pachage
+      yum: pkg=epel-release state=installed update_cache=true
+
+    - name: Installs nginx web server
+      yum: pkg=nginx state=installed update_cache=true
+    
+    - name: remove nginx.conf
+      file:
+        path=/etc/nginx/nginx.conf
+        state=absent
+
+    
+    - name: add nginx.conf
+      template:
+        src=system_hostfile
+        dest=/etc/hosts
+        owner=root
+        group=root
+        mode=0644
+      with_items: added nginx.conf
+
+    - name: add nginx.conf
+      template:
+        src=nginx_conf/nginx.conf
+        dest=/etc/nginx/nginx.conf
+        owner=root
+        group=root
+        mode=0644
+      with_items: added nginx.conf
+      notify:
+        - start nginx
+
+  handlers:
+    - name: start nginx
+      service: name=nginx state=started
+
+
+
+

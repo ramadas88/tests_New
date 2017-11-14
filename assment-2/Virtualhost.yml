@@ -1,0 +1,64 @@
+---
+- hosts: servers
+  tasks:
+    #- name: create vhost directory
+    #  file:
+    #    path=/etc/nginx/vhost
+    #    state=directory
+    #    owner=root
+    #    group=root
+    #    mode=0755
+    - name: create myfirstpage document root
+      file:
+        path=/usr/share/nginx/www/myfirstpage
+        state=directory
+        owner=root
+        group=root
+        mode=0755
+    - name: upload 1.html
+      copy: src=htmlfiles/1.html dest=/usr/share/nginx/www/myfirstpage/ mode=0644
+    - name: create mysecondpage document root
+      file:
+        path=/usr/share/nginx/www/mysecondpage
+        state=directory
+        owner=root
+        group=root
+        mode=0755
+    - name: upload 2.html
+      copy: src=htmlfiles/2.html dest=/usr/share/nginx/www/mysecondpage/ mode=0644
+    - name: create mythirdpage document root
+      file:
+        path=/usr/share/nginx/www/mythirdpage
+        state=directory
+        owner=root
+        group=root
+        mode=0755
+    - name: upload 3.html
+      copy: src=htmlfiles/3.html dest=/usr/share/nginx/www/mythirdpage/ mode=0644
+    - name: Create a myfirstpage.com file
+      template:
+        src=nginx-config/myfirstpage.conf
+        dest=/etc/nginx/conf.d/myfirstpage.com.conf
+        owner=root
+        group=root
+        mode=0644
+    - name: Create mysecondpage.com file
+      template:
+        src=nginx-config/mysecondpage.conf
+        dest=/etc/nginx/conf.d/mysecondpage.com.conf
+        owner=root
+        group=root
+        mode=0644
+    - name: Create mythirdpage.com file
+      template:
+        src=nginx-config/mythirdpage.conf
+        dest=/etc/nginx/conf.d/mythirdpage.com.conf
+        owner=root
+        group=root
+        mode=0644
+
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
+
+
