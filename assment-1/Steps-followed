@@ -1,0 +1,30 @@
+Createed an vagrant file and installed centos7 on linux box 
+
+
+My testenvironment is not supporting multiple gust host so istalled docker independally on centos system and configured the docker file
+
+
+
+
+installed docker on centos
+created necessary supporting files  for nginx configuration
+
+created docker file for nginx insalation and configuring nginx
+  
+using docker file connands copied 
+   nginx configuration
+   virtulal host configutstion files
+   host file 
+modified host file on host system 
+
+
+created docker image using 
+		docker run -t 'image name '  .
+
+started the image as container using below command
+		docker run dit -p 80:80 'image id' 
+
+verfiied the nginx settings from host os using browser/curl command
+
+
+
